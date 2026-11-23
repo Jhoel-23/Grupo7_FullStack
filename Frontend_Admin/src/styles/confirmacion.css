@@ -1,0 +1,27 @@
+/* Confirmación compartida para Cliente y Administración. */
+.g7-confirm-backdrop{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:20px;background:rgba(5,31,24,.65);backdrop-filter:blur(5px);animation:g7-confirm-in .15s ease-out}
+.g7-confirm-dialog{box-sizing:border-box;width:min(100%,490px);max-height:min(90vh,740px);overflow-y:auto;padding:32px;background:#fff;border:1px solid #dbe8e0;border-radius:20px;box-shadow:0 24px 85px rgba(3,30,20,.25);color:#143c30;animation:g7-confirm-pop .2s ease-out}
+.g7-confirm-icon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;font-size:25px;font-weight:800;background:#e0f8e8;color:#11804b;margin-bottom:18px}
+.g7-confirm-icon.g7-confirm-danger{background:#fff1ec;color:#b23b26}
+.g7-confirm-eyebrow{font-size:11px;letter-spacing:.13em;font-weight:750;color:#23865e;margin:0 0 8px}
+.g7-confirm-dialog h2{font-size:23px;line-height:1.25;font-weight:750;letter-spacing:-.03em;color:#103c2d;margin:0 0 10px}
+.g7-confirm-description{font-size:14px;line-height:1.65;color:#506b60;margin:0 0 18px}
+.g7-confirm-details{margin:0 0 14px;background:#f6faf7;border:1px solid #e3eee7;padding:8px 16px;border-radius:12px}
+.g7-confirm-details div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid #e3eee7}
+.g7-confirm-details div:last-child{border-bottom:0}
+.g7-confirm-details dt{font-size:13px;color:#657f72}
+.g7-confirm-details dd{font-size:13px;text-align:right;font-weight:700;overflow-wrap:anywhere;color:#153e2f;margin:0}
+.g7-confirm-footnote{font-size:12px;line-height:1.5;color:#758a80;margin:14px 0 20px}
+.g7-confirm-actions{display:flex;gap:12px;justify-content:flex-end}
+.g7-confirm-actions button{min-width:125px;border-radius:11px;padding:12px 17px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:background .16s,transform .16s,box-shadow .16s}
+.g7-confirm-actions button:focus-visible{outline:3px solid #49c48f;outline-offset:3px}
+.g7-confirm-cancel{background:#f7faf8;border:1px solid #ccdcd2;color:#365647}
+.g7-confirm-cancel:hover{background:#eaf4ed}
+.g7-confirm-accept{background:#0b995a;border:1px solid #0b995a;color:#fff;box-shadow:0 5px 15px rgba(10,126,78,.17)}
+.g7-confirm-accept:hover{background:#087c4a;transform:translateY(-1px)}
+.g7-confirm-accept.g7-confirm-accept-danger{background:#c44734;border-color:#c44734;box-shadow:none}
+.g7-confirm-accept.g7-confirm-accept-danger:hover{background:#a73527}
+@keyframes g7-confirm-in{from{opacity:0}to{opacity:1}}
+@keyframes g7-confirm-pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:500px){.g7-confirm-dialog{padding:22px}.g7-confirm-actions{flex-direction:column-reverse}.g7-confirm-actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){.g7-confirm-backdrop,.g7-confirm-dialog{animation:none}.g7-confirm-actions button{transition:none}}

@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { autenticar } from "../middlewares/auth.js";
+import { requireRol } from "../middlewares/requireRol.js";
+import * as controller from "../controllers/banco.controller.js";
+export const router=Router();
+router.post("/banco/abrir-cuenta",autenticar,requireRol("banco",["cliente"]),controller.abrirCuenta);
+router.post("/banco/depositar",autenticar,requireRol("banco",["empleado"]),controller.depositar);
+router.get("/banco/mis-cuentas",autenticar,requireRol("banco",["cliente"]),controller.misCuentas);
+router.get("/banco/operaciones-dia",autenticar,requireRol("banco",["empleado"]),controller.operacionesDia);
+router.get("/banco/admin/panel",autenticar,requireRol("banco",["administrador"]),controller.panelBanco);
+router.patch("/banco/admin/clientes/:id",autenticar,requireRol("banco",["administrador"]),controller.actualizarClienteBanco);

@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "01 API Node :3000",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/Backend"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "02 React Cliente :5173",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/Frontend_Cliente"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "03 React Admin/Empleado :5174",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": {
+        "cwd": "${workspaceFolder}/Frontend_Admin"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}

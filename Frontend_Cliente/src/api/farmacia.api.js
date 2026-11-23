@@ -1,0 +1,15 @@
+import { apiRequest } from "./client.js";
+export const registrarPedidoNeon = (token,productoId,cantidad,direccion) => apiRequest("/farmacia/pedido",{method:"POST",token,body:{productoId,cantidad,direccion}});
+export const cancelarPedidoNeon = (token,id) => apiRequest(`/farmacia/pedido/${encodeURIComponent(id)}/cancelar`,{method:"POST",token});
+export const consultarCatalogoNeon = () => apiRequest("/farmacia/productos");
+export const consultarCatalogoAdminNeon = token => apiRequest("/farmacia/admin/productos",{token});
+export const crearMedicamentoNeon = (token,body) => apiRequest("/farmacia/admin/productos",{method:"POST",token,body});
+export const actualizarMedicamentoNeon = (token,id,body) => apiRequest(`/farmacia/admin/productos/${encodeURIComponent(id)}`,{method:"PUT",token,body});
+export const pagarDeliveryNeon = (token,pedidoId) => apiRequest("/farmacia/pagar-delivery",{method:"POST",token,body:{pedidoId}});
+export const consultarPedidoPendienteNeon = token => apiRequest("/farmacia/pedido-pendiente",{token});
+export const consultarCobrosFarmaciaNeon = token => apiRequest("/farmacia/cobros",{token});
+export const consultarDespachosNeon = token => apiRequest("/farmacia/despachos",{token});
+export const despacharPedidoNeon = (token,id) => apiRequest(`/farmacia/despachos/${encodeURIComponent(id)}`,{method:"PATCH",token});
+export const consultarPedidosAdminNeon = token => apiRequest("/farmacia/admin/pedidos",{token});
+export const actualizarPedidoAdminNeon = (token,id,direccion) => apiRequest(`/farmacia/admin/pedidos/${encodeURIComponent(id)}`,{method:"PATCH",token,body:{direccion}});
+export const consultarSeguimientoNeon = (token,codigo) => apiRequest(`/farmacia/seguimiento/${encodeURIComponent(codigo)}`,{token});

@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: grupo7-api
+    runtime: node
+    rootDir: Backend
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/salud
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: AWS_ENDPOINT_URL_S3
+        sync: false
+      - key: AWS_REGION
+        value: us-east-2
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: S3_BUCKET
+        sync: false

@@ -1,0 +1,33 @@
+.catalogo-titulo { font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-.03em;line-height:1.15;color:#0f3d2e;margin:0 0 9px}
+.catalogo-subtitulo{color:#536a5d;line-height:1.55;margin:0 0 20px}
+.catalogo-panel{background:#fff;border:1px solid #dce9df;border-radius:16px;padding:clamp(16px,2.2vw,26px);box-shadow:0 9px 26px rgba(15,61,46,.06);margin:20px 0}
+.catalogo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:15px}
+.catalogo-item{background:#fff;border:2px solid #e5eee8;border-radius:14px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:7px;color:#15392a;transition:border-color .18s,transform .18s,box-shadow .18s;width:100%}
+button.catalogo-item{cursor:pointer}
+.catalogo-item:hover{border-color:#35af78;transform:translateY(-1px)}
+.catalogo-item.seleccionado{border-color:#12935f;box-shadow:0 0 0 3px rgba(18,147,95,.12)}
+.catalogo-imagen{width:100%;height:150px;background:#f1f7f3;border-radius:10px;display:grid;place-items:center;overflow:hidden;color:#789586}
+.catalogo-imagen img{width:100%;height:100%;object-fit:contain}
+.catalogo-precio{font-size:1.35rem;font-weight:800;color:#11633c}
+.catalogo-nota{color:#5b7163;font-size:.9rem}
+.catalogo-estado{display:inline-flex;align-items:center;border-radius:100px;padding:4px 9px;background:#e9f7ee;color:#12653c;font-size:.79rem;font-weight:700}
+.catalogo-estado.sin-stock{color:#9e442b;background:#fff1e9}
+.catalogo-fila{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.catalogo-campo{display:grid;gap:7px;color:#244a38;font-weight:600;font-size:.93rem}
+.catalogo-campo input,.catalogo-campo select,.catalogo-campo textarea{font:inherit;color:#1c3b30;border:1px solid #c7d8ce;border-radius:9px;padding:11px;background:#fff;min-width:0;width:100%;box-sizing:border-box}
+.catalogo-campo input:focus,.catalogo-campo textarea:focus,.catalogo-campo select:focus{outline:2px solid #63c59c;outline-offset:1px}
+.catalogo-dos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.catalogo-boton{border:none;border-radius:10px;background:#149958;color:white;padding:12px 17px;font-weight:700;cursor:pointer}
+.catalogo-boton:disabled{background:#94ada0;cursor:not-allowed}
+.catalogo-boton.secundario{background:#e5f3ea;color:#14643d}
+.catalogo-boton.peligro{background:#fff0ee;color:#a1372d}
+.catalogo-alerta{padding:12px 14px;background:#fff1f1;color:#9b2b31;border-radius:9px}
+.catalogo-ok{padding:12px 14px;background:#e8f7ed;color:#166238;border-radius:9px}
+.catalogo-precio-total{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid #dbe9e0;padding-top:16px;margin-top:10px;font-weight:700}
+.catalogo-precio-total strong{font-size:1.7rem;color:#0c6c40}
+.catalogo-admin-grid{display:grid;grid-template-columns:minmax(260px,.86fr) minmax(350px,1.14fr);gap:20px;align-items:start}
+.catalogo-ficha{display:grid;grid-template-columns:90px 1fr;gap:12px;border:1px solid #e2eee7;border-radius:12px;padding:12px;margin-bottom:10px}
+.catalogo-ficha .catalogo-imagen{height:90px}
+.catalogo-mini{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.87rem;color:#567061}
+@media(max-width:900px){.catalogo-admin-grid{grid-template-columns:1fr}}
+@media(max-width:530px){.catalogo-dos{grid-template-columns:1fr}}

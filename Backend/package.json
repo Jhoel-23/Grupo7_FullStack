@@ -1,0 +1,27 @@
+{
+  "name": "grupo7-api-semana13",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "db:init": "node database/init.js",
+    "db:demo": "node database/init.js --demo",
+    "check": "node --check src/server.js",
+    "test": "node --test tests/*.test.js",
+    "db:storage": "node database/storage-init.js",
+    "db:catalogo": "node database/catalogo-init.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.0",
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

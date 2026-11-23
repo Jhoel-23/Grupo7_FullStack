@@ -1,0 +1,7 @@
+{
+  "explorer.compactFolders": false,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true
+  }
+}

@@ -1,0 +1,14 @@
+import { Router } from "express";
+import { autenticar } from "../middlewares/auth.js";
+import { requireRol } from "../middlewares/requireRol.js";
+import * as controller from "../controllers/farmacia.controller.js";
+export const router=Router();
+router.post("/farmacia/pedido",autenticar,requireRol("farmacia",["cliente"]),controller.crearPedido);
+router.post("/farmacia/pedido/:id/cancelar",autenticar,requireRol("farmacia",["cliente"]),controller.cancelarPedido);
+router.post("/farmacia/pagar-delivery",autenticar,requireRol("farmacia",["cliente"]),controller.pagarDelivery);
+router.get("/farmacia/pedido-pendiente",autenticar,requireRol("farmacia",["cliente"]),controller.pedidoPendiente);
+router.get("/farmacia/cobros",autenticar,requireRol("farmacia",["administrador"]),controller.cobros);
+router.get("/farmacia/despachos",autenticar,requireRol("farmacia",["empleado"]),controller.despachos);
+router.patch("/farmacia/despachos/:id",autenticar,requireRol("farmacia",["empleado"]),controller.marcarDespacho);
+router.get("/farmacia/admin/pedidos",autenticar,requireRol("farmacia",["administrador"]),controller.pedidosAdmin);
+router.patch("/farmacia/admin/pedidos/:id",autenticar,requireRol("farmacia",["administrador"]),controller.actualizarPedido);

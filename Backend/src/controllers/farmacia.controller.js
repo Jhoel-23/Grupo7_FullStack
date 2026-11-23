@@ -1,0 +1,11 @@
+import * as service from "../services/farmacia.service.js";
+import { asyncController } from "./asyncController.js";
+export const crearPedido = asyncController(req => service.crearPedido(req.usuarioId, req.body), 201);
+export const cancelarPedido = asyncController(req => service.cancelarPedido(req.usuarioId,req.params.id));
+export const pagarDelivery = asyncController(req => service.pagarDelivery(req.usuarioId, req.body));
+export const pedidoPendiente = asyncController(req => service.pedidoPendiente(req.usuarioId));
+export const cobros = asyncController(req => service.cobros(req.usuarioId));
+export const despachos = asyncController(req => service.despachos(req.usuarioId));
+export const marcarDespacho = asyncController(req => service.marcarDespacho(req.usuarioId, req.params.id));
+export const pedidosAdmin = asyncController(req => service.pedidosAdmin(req.usuarioId));
+export const actualizarPedido = asyncController(req => service.actualizarPedido(req.usuarioId, req.params.id, req.body));
