@@ -42,7 +42,7 @@ export async function crearPedidoConInventario(usuarioId,{productoId,cantidad,di
     const id=sec.rows[0].id;
     const r=await client.query(`INSERT INTO pedidos_delivery_farmacia
       (id,id_usuario,codigo,producto,producto_id,cantidad,precio_unitario,direccion,total,estado)
-      VALUES ($1,$2,'PDF-'||LPAD($1::text,5,'0'),$3,$4,$6,$5,$7,$6*$5,'pendiente')
+      VALUES ($1,$2,'PDF-'||LPAD($1::text,5,'0'),$3,$4,$6,$5,$7,($6::integer * $5::numeric),'pendiente')
       RETURNING id,codigo,producto,producto_id,cantidad,precio_unitario,direccion,total,estado`,
       [id,usuarioId,prod.nombre,productoId,prod.precio,cantidad,direccion]);
     await client.query("COMMIT");
