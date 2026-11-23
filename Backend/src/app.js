@@ -1,4 +1,5 @@
 import express from "express";
+import { mostrarInicio } from "./landing.js";
 import cors from "cors";
 import { router as auth } from "./routes/auth.routes.js";
 import { router as farmacia } from "./routes/farmacia.routes.js";
@@ -18,24 +19,8 @@ const origins = new Set([
 app.use(cors({ origin: (origin, callback) => callback(null, !origin || origins.has(origin)) }));
 app.disable("x-powered-by");
 app.use(express.json({limit:"100kb"}));
-// Página principal informativa de la API para presentar el proyecto.
-// El estado real de la base de datos se comprueba en GET /api/health.
-app.get("/", (req, res) => {
-  res.set("Cache-Control", "no-store");
-  res.status(200).json({
-    proyecto: "Grupo 7 - FarmaSalud Perú y Banco Andino Perú",
-    tipo: "API REST",
-    backend: "Node.js + Express",
-    hosting: "Render",
-    estado: "operativo",
-    base_datos: "PostgreSQL - Neon",
-    imagenes: "Neon Object Storage",
-    verificaciones: {
-      servidor: "/api/salud",
-      base_datos: "/api/health"
-    }
-  });
-});
+// Presentación pública interactiva; las rutas REST permanecen sin cambios.
+app.get("/", mostrarInicio);
 app.get("/api/health",async(req,res,next)=>{
  try{const r=await sql`SELECT current_database() AS database, NOW() AS fecha`;
  res.json({estado:"conectado",database:r[0].database,fecha:r[0].fecha});}
