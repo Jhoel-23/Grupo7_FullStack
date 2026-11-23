@@ -23,8 +23,8 @@ export async function modificarProducto(id,{ sku,nombre,descripcion,precio,stock
       WHERE id=$1 RETURNING *`,[id,sku,nombre,descripcion,precio,stock,activo,imagenId]);
   return r.rows[0];
 }
-export async function crearPedidoConInventario(usuarioId,{productoId,cantidad,direccion}) {
-  const client=await pool.connect();
+export async function crearPedidoConInventario(usuarioId,{productoId,cantidad,direccion},dbPool=pool) {
+  const client=await dbPool.connect();
   try {
     await client.query("BEGIN");
     // Serializa los pedidos del mismo cliente y evita reservas duplicadas.
@@ -40,11 +40,15 @@ export async function crearPedidoConInventario(usuarioId,{productoId,cantidad,di
     await client.query("UPDATE farmacia_productos SET stock=stock-$2,fecha_actualizacion=NOW() WHERE id=$1",[productoId,cantidad]);
     const sec=await client.query(`SELECT nextval(pg_get_serial_sequence('public.pedidos_delivery_farmacia','id')) AS id`);
     const id=sec.rows[0].id;
+    // El identificador es numerico y el codigo se pasa por separado.
+    // Evita 42P08: no reutilizar $1 como integer y text en el mismo INSERT.
+    const codigo=`PDF-${String(id).padStart(5,'0')}`;
     const r=await client.query(`INSERT INTO pedidos_delivery_farmacia
       (id,id_usuario,codigo,producto,producto_id,cantidad,precio_unitario,direccion,total,estado)
-      VALUES ($1,$2,'PDF-'||LPAD($1::text,5,'0'),$3,$4,$6,$5,$7,($6::integer * $5::numeric),'pendiente')
+      VALUES ($1::integer,$2::integer,$3::text,$4::text,$5::bigint,$6::integer,$7::numeric,$8::text,
+              ($6::integer * $7::numeric),'pendiente')
       RETURNING id,codigo,producto,producto_id,cantidad,precio_unitario,direccion,total,estado`,
-      [id,usuarioId,prod.nombre,productoId,prod.precio,cantidad,direccion]);
+      [id,usuarioId,codigo,prod.nombre,productoId,cantidad,prod.precio,direccion]);
     await client.query("COMMIT");
     return r.rows[0];
   } catch(error) { await client.query("ROLLBACK"); throw error; }
